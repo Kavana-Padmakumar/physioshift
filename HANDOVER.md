@@ -1,74 +1,37 @@
-\# Handover: Phase 2 Day 1 → Day 2
+# PhysioShift Handover Notes
 
+## Phase 2 Day 4 (16 Aug) — COMPLETE
+`PhysioShiftDataset` class built, chaining resample → filter → normalize_and_window.
+Run end-to-end on all 5 open datasets. Harmonized cache generated and saved.
 
+**Pipeline code:** `src/harmonize/dataset.py`
+**Reference notebook:** `notebooks/02_full_pipeline.ipynb`
 
-\## What's done (Member 1, 13 Aug)
+## Harmonized Cache — ready to use
+Location: `data/harmonized_cache/*.npy`
 
-`harmonize\_resample()` implemented and tested on real signals from all 5 datasets.
+Each file: windowed, resampled (100Hz), filtered, z-score normalized signal.
+Shape: `(n_windows, 1000)` — 1000 samples = 10 sec @ 100Hz.
 
+| Domain ID | File | Shape |
+|---|---|---|
+| D1_MITBIH_open_chest | D1_MITBIH_open_chest.npy | (360, 1000) |
+| D2_PTBXL_open_clinical | D2_PTBXL_open_clinical.npy | (1, 1000) |
+| D3_MultisitePPG_open_wearable | D3_MultisitePPG_open_wearable.npy | (96, 1000) |
+| D4_WESAD_open_chest | D4_WESAD_open_chest.npy | (1, 1000) |
+| D5_PPGDaLiA_open_wrist | D5_PPGDaLiA_open_wrist.npy | (14, 1000) |
 
-
-\*\*Function location:\*\* `src/harmonize/resample.py`
-
-
-
-\*\*Signature:\*\*
-
+**Load example:**
 ```python
-
-harmonize\_resample(signal: np.ndarray, original\_fs: float, target\_fs: float = 100.0) -> np.ndarray
-
+import numpy as np
+d1 = np.load('data/harmonized_cache/D1_MITBIH_open_chest.npy')
 ```
 
-Resamples any 1D signal to a target rate (default 100Hz) using `scipy.signal.resample\_poly` (anti-aliased, polyphase filtering).
+⚠️ **Caveat:** D2 (PTB-XL) and D4 (WESAD) currently have only 1 window each — the loaded source slices were short. If downstream analysis needs more samples per dataset for meaningful statistics, re-run `PhysioShiftDataset.process_signal()` with longer input signals first.
 
+## Next up: Member 2, 17 Aug
+Implement `domain_shift_severity()` — compute the full 6×6 pairwise severity matrix across datasets (5 open datasets + 1 placeholder slot for MIMIC, pending credentialing approval).
 
+Combine 4 mismatch signals into one 0–1 severity score per dataset pair.
 
-\*\*Key fact:\*\* All 5 datasets are now harmonized to a common \*\*100Hz\*\* — downstream steps (filtering, windowing) can assume this fixed rate.
-
-
-
-\## Dataset reference table
-
-
-
-| Dataset | Original Fs | Format | Local Path | Loading Notes |
-
-|---|---|---|---|---|
-
-| MIT-BIH | 360 Hz | WFDB | `data/mitdb/` | `wfdb.rdrecord()` |
-
-| PTB-XL | 100 Hz | WFDB | `data/ptbxl/` | `wfdb.rdrecord()` |
-
-| Multi-site PPG | 500 Hz | WFDB | `data/multisite\_ppg/` | `wfdb.rdrecord()` |
-
-| WESAD | 700 Hz | Pickle | `data/wesad/S{n}/S{n}.pkl` | `pickle.load()` → `\['signal']\['chest']\['ECG']` |
-
-| PPG-DaLiA | 64 Hz | Pickle | `data/ppgdalia/PPG\_FieldStudy/S{n}/S{n}.pkl` | `pickle.load()` → `\['signal']\['wrist']\['BVP']` |
-
-
-
-\## Reference materials
-
-\- Test/verification notebook: `notebooks/01\_resample\_test.ipynb`
-
-\- Before/after plots: `notebooks/plots/\*.png`
-
-
-
-\## Next up (Member 2, 14 Aug)
-
-Implement `bandpass\_filter()` using `scipy.signal.butter` + `filtfilt`, with modality-aware cutoffs:
-
-\- ECG: 0.5–40 Hz
-
-\- PPG: 0.5–8 Hz
-
-\- EDA/GSR: 0–5 Hz
-
-
-
-Apply to all 5 resampled datasets, visually inspect for filtering artifacts.
-
-Deliverable: `src/harmonize/filter.py` + comparison plots for ECG, PPG, EDA signals.
-
+**Deliverable:** `src/harmonize/severity.py` + severity matrix as a heatmap figure (with labels + colorbar — this is a required paper figure, build it properly).
