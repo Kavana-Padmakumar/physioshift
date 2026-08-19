@@ -23,9 +23,23 @@ def try_process_dataset(
     pipeline. If the raw data isn't available, skip it gracefully
     instead of crashing the whole run.
 
-    loader_fn is a zero-argument function that does the actual file I/O
-    and returns (signal, original_fs, modality). It should raise
-    FileNotFoundError if the data isn't present.
+    Parameters
+    ----------
+    dataset : PhysioShiftDataset
+        An initialized PhysioShiftDataset instance to process the signal into.
+    loader_fn : Callable[[], tuple[np.ndarray, float, str]]
+        Zero-argument function that performs the actual file I/O and
+        returns (signal, original_fs, modality). Should raise
+        FileNotFoundError if the raw data isn't present on disk.
+    domain_id : str
+        Clean domain-ID string for this dataset, e.g. 'D6_MIMIC_clinical_icu'.
+
+    Returns
+    -------
+    np.ndarray or None
+        Windowed, normalized signal array if loading succeeded.
+        None if the dataset was skipped (missing file or unexpected error) --
+        caller should handle None gracefully rather than assuming success.
     """
     try:
         signal, original_fs, modality = loader_fn()
