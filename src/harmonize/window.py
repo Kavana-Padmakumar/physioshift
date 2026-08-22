@@ -52,4 +52,36 @@ def sliding_window_indices(n_samples: int, window_size: int, step: int) -> list[
     indices = []
     start = 0
     while start + window_size <= n_samples:
-        indices.append((start, start + window
+        indices.append((start, start + window_size))
+        start += step
+    return indices
+
+
+def normalize_and_window(signal, fs, window_sec, overlap=0.0, eps=1e-8):
+    """
+    Normalizes a signal and slices it into overlapping windows.
+
+    Parameters
+    ----------
+    signal : np.ndarray
+        1D array of signal values.
+    fs : int
+        Sampling frequency in Hz.
+    window_sec : float
+        Window length in seconds.
+    overlap : float, default=0.0
+        Fractional overlap between consecutive windows (0 to 1).
+    eps : float, default=1e-8
+        Passed through to zscore_normalize.
+
+    Returns
+    -------
+    np.ndarray
+        2D array of shape (num_windows, window_size).
+    """
+    normalized = zscore_normalize(signal, eps=eps)
+    window_size = int(window_sec * fs)
+    step = max(1, int(window_size * (1 - overlap)))
+    idx_pairs = sliding_window_indices(len(normalized), window_size, step)
+    windows = [normalized[start:end] for start, end in idx_pairs]
+    return np.array(windows)

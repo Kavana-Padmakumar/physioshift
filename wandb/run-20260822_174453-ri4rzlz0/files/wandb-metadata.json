@@ -1,0 +1,26 @@
+{
+  "os":  "Windows-11-10.0.26100-SP0",
+  "python":  "CPython 3.14.3",
+  "startedAt":  "2026-08-22T12:14:53.536377Z",
+  "program":  "-m src.train.train_baseline",
+  "git":  {
+    "remote":  "https://github.com/Kavana-Padmakumar/physioshift.git",
+    "commit":  "bd8fa83fe46adbf10a0b3042e4667b000e53dc30"
+  },
+  "email":  "amdggourav@gmail.com",
+  "root":  "C:\\Users\\Gourav\\Downloads\\physioshift",
+  "host":  "LAPTOP-VPK5UVPK",
+  "executable":  "C:\\Users\\Gourav\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+  "cpu_count":  14,
+  "cpu_count_logical":  18,
+  "disk":  {
+    "/":  {
+      "total":  "473391165440",
+      "used":  "323464929280"
+    }
+  },
+  "memory":  {
+    "total":  "16569610240"
+  },
+  "writerId":  "8za6pdk3ytwgmwz9h3nkz5lm6g4qvwjn"
+}

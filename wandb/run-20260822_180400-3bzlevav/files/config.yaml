@@ -1,0 +1,61 @@
+_wandb:
+    value:
+        cli_version: 0.28.2
+        e:
+            wnyyf7cp65ql4o7jqr33l2qxaq4sw6b9:
+                cpu_count: 14
+                cpu_count_logical: 18
+                disk:
+                    /:
+                        total: "473391165440"
+                        used: "323763015680"
+                email: amdggourav@gmail.com
+                executable: C:\Users\Gourav\AppData\Local\Python\pythoncore-3.14-64\python.exe
+                git:
+                    commit: bd8fa83fe46adbf10a0b3042e4667b000e53dc30
+                    remote: https://github.com/Kavana-Padmakumar/physioshift.git
+                host: LAPTOP-VPK5UVPK
+                memory:
+                    total: "16569610240"
+                os: Windows-11-10.0.26100-SP0
+                program: -m src.train.train_baseline
+                python: CPython 3.14.3
+                root: C:\Users\Gourav\Downloads\physioshift
+                startedAt: "2026-08-22T12:34:00.226706Z"
+                writerId: wnyyf7cp65ql4o7jqr33l2qxaq4sw6b9
+        m: []
+        python_version: 3.14.3
+        t:
+            "1":
+                - 1
+                - 5
+                - 53
+            "2":
+                - 1
+                - 5
+                - 53
+            "3":
+                - 2
+                - 16
+            "4": 3.14.3
+            "5": 0.28.2
+            "8":
+                - 3
+            "12": 0.28.2
+            "13": windows-amd64
+batch_size:
+    value: 16
+epochs:
+    value: 3
+lr:
+    value: 0.001
+num_classes:
+    value: 3
+overlap:
+    value: 0.5
+patience:
+    value: 3
+target_fs:
+    value: 100
+window_sec:
+    value: 10

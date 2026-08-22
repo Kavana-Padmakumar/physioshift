@@ -38,8 +38,8 @@ class PhysioShiftDataset:
         self.cache[domain_id] = windowed
         return windowed
 
-   def save_cache(self, out_dir="data/harmonized_cache"):
-    """
+    def save_cache(self, out_dir="data/harmonized_cache"):
+        """
     Saves each cached domain's windowed array as a .npy file.
 
     Parameters
@@ -54,7 +54,7 @@ class PhysioShiftDataset:
         Writes one {domain_id}.npy file per cached domain and
         prints a confirmation line for each.
     """
-    os.makedirs(out_dir, exist_ok=True)
+        os.makedirs(out_dir, exist_ok=True)
 
         for domain_id, arr in self.cache.items():
             path = os.path.join(out_dir, f"{domain_id}.npy")

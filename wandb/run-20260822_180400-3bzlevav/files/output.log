@@ -1,0 +1,4 @@
+Smoke test data shape: (15, 1000), labels shape: (15,)
+Epoch 1: train_loss=1.3004 val_loss=1.1242 val_f1=0.0000
+Epoch 2: train_loss=0.7474 val_loss=1.1883 val_f1=0.0000
+Epoch 3: train_loss=0.2831 val_loss=1.2899 val_f1=0.0000

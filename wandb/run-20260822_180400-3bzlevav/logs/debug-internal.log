@@ -1,0 +1,18 @@
+{"time":"2026-08-22T18:04:00.2796666+05:30","level":"INFO","msg":"wandb-core"}
+{"time":"2026-08-22T18:04:00.2801967+05:30","level":"INFO","msg":"stream: starting","core version":"0.28.2"}
+{"time":"2026-08-22T18:04:00.402982+05:30","level":"INFO","msg":"stream: created new stream","id":"3bzlevav"}
+{"time":"2026-08-22T18:04:00.4047665+05:30","level":"INFO","msg":"handler: started"}
+{"time":"2026-08-22T18:04:00.4052735+05:30","level":"INFO","msg":"stream: started"}
+{"time":"2026-08-22T18:04:00.4062806+05:30","level":"INFO","msg":"writer: started","stream_id":"3bzlevav"}
+{"time":"2026-08-22T18:04:00.4062806+05:30","level":"INFO","msg":"sender: started"}
+{"time":"2026-08-22T18:04:02.2415679+05:30","level":"INFO","msg":"filestream: sending request","total_files":1,"console_offset":0,"console_lines":1}
+{"time":"2026-08-22T18:04:03.1584355+05:30","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-08-22T18:04:12.4233945+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-08-22T18:04:12.4233945+05:30","level":"INFO","msg":"filestream: sending request","total_files":3,"history_offset":0,"history_lines":3,"console_offset":1,"console_lines":3,"uploaded_len":5,"complete":true,"exit_code":0}
+{"time":"2026-08-22T18:04:12.8926148+05:30","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-08-22T18:04:12.8977466+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-08-22T18:04:12.9083993+05:30","level":"INFO","msg":"stream: finishing up"}
+{"time":"2026-08-22T18:04:12.9083993+05:30","level":"INFO","msg":"handler: closed"}
+{"time":"2026-08-22T18:04:12.9322806+05:30","level":"INFO","msg":"sender: closed"}
+{"time":"2026-08-22T18:04:12.9322806+05:30","level":"INFO","msg":"stream: all finished"}
+{"time":"2026-08-22T18:04:14.9332733+05:30","level":"ERROR","msg":"stream: failed to shut down analytics","error":"shutdown errors: [failed to upload metrics: context deadline exceeded: retry-able request failure: body: too many concurrent telemetry requests context deadline exceeded]"}
